@@ -1,8 +1,6 @@
-@import './style.css';
-@import '/bootstrap.css';
 
 body {
-    overflow-x: hidden; 
+    overflow-x: hidden; /* Prevent scroll on narrow devices */
   }
   
   body {
