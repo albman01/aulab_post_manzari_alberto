@@ -22,7 +22,7 @@ class ArticleController extends Controller implements HasMiddleware
 
     public function create()
     {
-        return view('articles.create');
+        return view('article.create');
     }
     
     public function index()
