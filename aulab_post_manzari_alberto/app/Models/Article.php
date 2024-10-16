@@ -10,15 +10,20 @@ class Article extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'title', 'description', 'price', 'category_id', 'user_id'
+        'title', 'description', 'subtitle', 'category_id', 'user_id'
     ];
 
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function category(): BelongsTo
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
+
+    public function category()
     {
         return $this->belongsTo(Category::class);
     }

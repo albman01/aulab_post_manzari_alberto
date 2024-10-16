@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Routing\Controllers\HasMiddleware;
 
 class ArticleController extends Controller implements HasMiddleware
 {
-    public static function middleware(): array
+    public static function middleware()
 
     {
         return [
@@ -22,7 +23,7 @@ class ArticleController extends Controller implements HasMiddleware
 
     public function create()
     {
-        return view('article.create');
+        return view('articles.create');
     }
     
     public function index()
@@ -34,14 +35,41 @@ class ArticleController extends Controller implements HasMiddleware
 
     public function show(Article $article)
     {
-        return view('article.show', compact('article'));
+        return view('articles.show', compact('article'));
     }
 
     public function byCategory(Category $category){
         $articles = $category->articles()->orderBy('created_at', 'desc')->get();
 
-        return view('article.by-category', compact('category', 'articles'));
+        return view('articles.by-category', compact('category', 'articles'));
         }
+        public function store(Request $request)
+{
     
+    $validatedData = $request->validate([
+        'title' => 'required|max:255',
+        'subtitle' => 'required|max:255',
+        'description' => 'required',
+        'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Se gestisci un'immagine
+        'category' => 'required'
+        
+    ]);
+
+   
+    $path = $request->file('image') ? $request->file('image')->store('images') : null;
+
+    // Creazione di un nuovo articolo
+    $article = Article::create([
+        'title' => $request->title,
+        'subtitle' =>$request->subtitle,
+        'description'=>$request->description,
+        'image'=> $request->file('image')->store('public/images'),
+        'user_id' => Auth::user()->id,
+    ]);
+    // Reindirizza alla pagina degli articoli
+    return redirect()->route('articles.index')->with('success', 'Articolo creato con successo!');
+}
+
+        
 
 }

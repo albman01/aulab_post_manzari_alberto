@@ -1,31 +1,3 @@
-
- {{--<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Offcanvas navbar</a>
-      <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      
-      <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" href="#">Dashboard</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Notifications</a>
-          </li>
-          <!-- Altri link qui -->
-        </ul>
-        <!-- Form di ricerca -->
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-      </div>
-    </div>
-  </nav> --}}
-
   
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/offcanvas-navbar/">
 
@@ -35,7 +7,6 @@
 
     <style>
 
-     /* Stili di base (mobile-first) */
 body {
   font-size: 14px;
 }
@@ -144,6 +115,9 @@ body {
           <a class="nav-link" href="{{ route('homepage') }}">Home</a>
         </li>
         @auth
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('articles.create')}}">Inserisci un articolo</a>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Ciao, {{ Auth::user()->name }}

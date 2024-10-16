@@ -9,6 +9,11 @@
 </head>
 <body>
     <x-navbar/>
+    @if (session('message'))
+        <div class="alert alert-success">
+            <p class="m-0">{{session('message')}}</p>
+        </div>
+    @endif
     <div class="min-vh-100">
         {{$slot}}
     </div>

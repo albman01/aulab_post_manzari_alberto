@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('subtitle');
             $table->text('description');
-            $table->float('price', 8, 2);
-            //relazione con Category
+            
+            
             $table->unsignedBigInteger('category_id')->nullable();
-            $table->foreign('category_id')->references('id')->on('categories');
-            //relazione con User
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('SET NULL');
+           
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
