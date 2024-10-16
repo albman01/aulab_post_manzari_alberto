@@ -18,3 +18,6 @@ Route::post('/articles', [ArticleController::class, 'store'])->name('articles.st
 Route::get('/articles/category{category}', [ArticleController::class, 'byCategory'])->name('articles.byCategory');
 
 Route::get('/careers', [PublicController::class, 'careers'])->name('careers');
+
+Route::post('/careers/submit', [PublicController::class, 'careersSubmit'])->name('careers.submit');
+

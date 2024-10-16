@@ -26,6 +26,14 @@ class PublicController extends Controller implements HasMiddleware
             new Middleware('auth', except: ['homepage']),
         ];
     }
+
+    public function careersSubmit(Request $request){
+        $request->validate([
+            'role' => 'required',
+            'email' => 'required|email',
+            'message' => 'required'
+        ]);
+    }
 }
 
 

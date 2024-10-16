@@ -125,6 +125,10 @@ body {
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{{ route('articles.index') }}">Tutti gli articoli</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{route('careers')}}">Lavora con noi</a>
+          </li>
+          
           <ul class="dropdown-menu">
             <li>
               <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('form-logout').submit();">Logout</a>
