@@ -5,6 +5,12 @@
             <div class="col-12">
                 <h1 class='display-4'>Benvenuto</h1>
                 <div class="my-3">
+                    @if (session('alert'))
+                        <div class="alert alert-danger">
+                            {{ session('alert') }}
+                        </div>
+                        @endif
+                    
                     
                     @if($articles->count())
                         @foreach($articles as $article)
