@@ -10,7 +10,7 @@
                         @foreach($articles as $article)
                             <h2>{{ $article->title }}</h2>
                             <p>{{ $article->excerpt }}</p>
-                            <a href="{{ route('article.show', $article) }}" class="btn btn-outline-secondary">Leggi</a>
+                            <a href="{{ route('articles.show', $article) }}" class="btn btn-outline-secondary">Leggi</a>
                             <hr>
                         @endforeach
                     @else
@@ -21,3 +21,4 @@
         </div>
     </div>
 </x-layout>
+
