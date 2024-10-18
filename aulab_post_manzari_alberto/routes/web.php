@@ -4,7 +4,7 @@ use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\ArticleController;
-
+use App\Http\Controllers\RevisorController;
 
 Route::get('/' , [PublicController::class, 'homepage'])->name('homepage');
 
@@ -25,4 +25,15 @@ Route::post('/careers/submit', [PublicController::class, 'careersSubmit'])->name
 
 Route::middleware('admin')->group(function(){
     Route::get('/admin/dashboard', [AdminController::class,])->name('admin.dashboard');
+});
+
+Route::middleware('admin')->group(function(){
+    Route::patch('/admin/{user}/set-admin', [AdminController::class, 'setAdmin'])->name('admin.setAdmin');
+    Route::patch('/admin/{user}/set-revisor', [AdminController::class, 'setRevisor'])->name('admin.setRevisor');
+    Route::patch('/admin/{user}/set-writer', [AdminController::class, 'setWriter'])->name('admin.setWriter');
+
+});
+
+Route::middleware('revisor')->group(function(){
+    Route::get('/revisor/dashboard', [RevisorController::class, 'dashboard']);
 });
