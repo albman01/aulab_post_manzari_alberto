@@ -125,6 +125,8 @@
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Ciao, {{ Auth::user()->name }}
             </a>
+            @if (Auth::user()->is_revisor)
+              <li><a class="dropdown-item" href="{{route('revisor.dashboard')}}">Dashboard Revisor</a></li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="{{ route('articles.index') }}">Tutti gli articoli</a>
             </li>

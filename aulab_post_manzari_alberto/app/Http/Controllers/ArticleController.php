@@ -28,7 +28,7 @@ class ArticleController extends Controller implements HasMiddleware
     
     public function index()
     {
-        $articles = Article::orderBy('created_at', 'desc')->get();
+        $articles = Article::where('is_accepted', true)->orderBy('created_at', 'desc')->get();
 
         return view('articles.index', compact('articles'));
     }
@@ -39,10 +39,16 @@ class ArticleController extends Controller implements HasMiddleware
     }
 
     public function byCategory(Category $category){
-        $articles = $category->articles()->orderBy('created_at', 'desc')->get();
+        $articles = $category->articles()->where('is_accepted', true)->orderBy('created_at', 'desc')->get();
 
         return view('articles.by-category', compact('category', 'articles'));
         }
+
+        // public function byUser(User $user){
+        //     $articles = $user->articles()->where('is_accepted', true)->orderBy('created_at', desc)->get();
+        //     return view('article.by-user', compact('user', 'articles'));
+            
+        // }
         public function store(Request $request)
 {
     
@@ -58,7 +64,7 @@ class ArticleController extends Controller implements HasMiddleware
    
     $path = $request->file('image') ? $request->file('image')->store('images') : null;
 
-    // Creazione di un nuovo articolo
+    
     $article = Article::create([
         'title' => $request->title,
         'subtitle' =>$request->subtitle,
