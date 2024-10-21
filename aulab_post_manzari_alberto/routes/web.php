@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\RevisorController;
+use App\Models\Article;
 
 Route::get('/' , [PublicController::class, 'homepage'])->name('homepage');
 
@@ -43,3 +44,5 @@ Route::middleware('revisor')->group(function(){
     Route::post('/revisor{article}/reject', [RevisorController::class, 'rejectArticle'])->name('revisor.rejectArticle');
     Route::post('/revisor{article}/undo', [RevisorController::class, 'undoArticle'])->name('revisor.undoArticle');
 });
+
+Route::get('/aticle/search', [ArticleController::class, 'articleSearch'])->name('article.search');

@@ -15,7 +15,7 @@ class ArticleController extends Controller implements HasMiddleware
 
     {
         return [
-            new Middleware('auth', except: ['index', 'show', 'byCategory']),
+            new Middleware('auth', except: ['index', 'show', 'byCategory', 'byUser', 'articleSearch']),
         ];
         
     }
@@ -76,6 +76,10 @@ class ArticleController extends Controller implements HasMiddleware
     return redirect()->route('articles.index')->with('success', 'Articolo creato con successo!');
 }
 
-        
+    public function articleSearch(Request $request){
+        $query = $request->input('query');
+        $articles = Article::search($query)->where('is_accepted', true)->orderBy('created_at', 'desc')->get();
+        return view('article.search-index', compact('articles', 'query'));
+    }
 
 }
