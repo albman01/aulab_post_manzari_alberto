@@ -41,6 +41,14 @@
         @enderror
         
         <div class="mb-3">
+            <label for="tags" class="form-label">Tags</label>
+            <input type="text" name="tags" class="form-control" id="tags" value="{{old('tags')}}">
+            <span class="small text-muted fst-italic">Dividi ogni tag con una virgola</span>
+            @error('tags')
+                <span class="text-danger">{{$message}}</span>
+                @enderror
+        
+        <div class="mb-3">
             <label for="description" class="form-label">Descrizione</label>
             <textarea id="description" cols="30" rows="10" class="form-control" wire:model.blur="description"></textarea>
             @error('description')

@@ -1,13 +1,13 @@
 <x-layout>
     
     <div class="container my-5">
-        <!-- Bottone per creare un nuovo articolo -->
+      
         <div class="row mb-4">
             <div class="col-12">
                 <a href="{{ route('articles.create') }}" class="btn btn-primary">Crea Nuovo Articolo</a>
             </div>
         </div>
-        
+           
         <div class="row justify-content-evenly">
             @foreach ($articles as $article)
             <div class="col-12 col-md-3">

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Tag;
 use APP\Models\User;
+use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
@@ -11,8 +12,8 @@ class AdminController extends Controller
         $adminRequests = User::where('is_admin', NULL)->get();
         $revisorRequests = User::where('is_revisor', NULL)->get();
         $writerRequests = User::where('is_writer', NULL)->get();
-    
-        return view('admin.dashboard', compact('adminRequests', 'revisorRequests', 'writerRequests'));
+        $tags = Tag::all();
+        return view('admin.dashboard', compact('adminRequests', 'revisorRequests', 'writerRequests' , 'tags'));
     
     }
 
@@ -30,6 +31,16 @@ class AdminController extends Controller
         $user->is_writer = true;
         $user->save();
         return redirect(route('admin.dashboard'))->with('message', "Hai reso $user->name redattore");
+    }
+
+    public function editTag(Request $request, Tag $tag){
+        $request->validate([
+            'name' => 'required|unique:tags',
+        ]);
+        $tag->update([
+            'name' => strtolower($request->name),
+        ]);
+        return redirect()->back()->with('message', 'Tag aggiornato correttamente');
     }
 
 }
